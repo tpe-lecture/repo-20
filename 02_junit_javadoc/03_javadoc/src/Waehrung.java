@@ -1,16 +1,37 @@
-// TODO: JavaDoc
+/**
+ * Klasse, die eine Währung repräsentiert. Jede Währung besitzt einen Namen, ein Kürzel 
+ * und einen Kurs (in Bezug auf Dollar)
+ * 
+ * Mit Hilfe des Konstruktors können neue Währungen erzeugt und initialisiert werden.
+ * 
+ * <pre>
+ * Waehrung euro = new Waehrung ("Euro", ""
+ * 
+ * @author Thomas Smits
+ *
+ */
 public class Waehrung {
 
-    // TODO: JavaDoc
+    /**
+     * gibt den Kurs der referenzierten Währung in int an, bezogen auf Dollar
+     */
     private final int kurs;
 
-    // TODO: JavaDoc
+    /**
+     * gibt den Namen der Währung als String an
+     * bspw. "Euro"
+     */
     private final String name;
 
-    // TODO: JavaDoc
+    /**
+     * gibt das Kürzel der Währung als String an
+     * bspw. "€"
+     */
     private final String kuerzel;
 
-    // TODO: JavaDoc
+    /**
+     * Teiler als long zur Umrechnung der Währung
+     */
     private static final long TEILER = 10000;
 
     /**
@@ -26,22 +47,36 @@ public class Waehrung {
         this.kuerzel = kuerzel;
     }
 
-    // TODO: JavaDoc
+    /**
+     * 
+     * @param betrag Geldbetrag der umgerechnet werden soll 
+     * @param toWaehrung gewünschte Währung, Objekt der Klasse Währung
+     * @return
+     */
     public long umrechnen(long betrag, Waehrung toWaehrung) {
         return betrag * kurs / toWaehrung.kurs;
     }
 
-    // TODO: JavaDoc
+    /**
+     * 
+     * @return gibt den Kurs der Währung als int zurück (in Bezug auf Dollar)
+     */
     public int getKurs() {
         return kurs;
     }
     
-    // TODO: JavaDoc
+    /**
+     * 
+     * @return gibt den Namen der Währung als String zurück
+     */
     public String getName() {
         return name;
     }
 
-    // TODO: JavaDoc
+    /**
+     * 
+     * @return gibt das Kürzel der Währung als String zurück
+     */
     public String getKuerzel() {
         return kuerzel;
     }
