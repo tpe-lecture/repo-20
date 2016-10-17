@@ -9,18 +9,23 @@ import java.awt.Point;
 import de.smits_net.games.framework.board.Board;
 import de.smits_net.games.framework.image.ImageBase;
 import de.smits_net.games.framework.sprite.Sprite;
+import tpe.oo.vererbung.*;
 
 /**
  * Spielfeld.
  */
-public class GameBoard {
+public class GameBoard extends Board {
 // TODO: Von Board ableiten
 
     /** Alien, das durch das Bild läuft. */
-    private AlienSprite alien;
+    private AlienSprite alien1;
+    
+    private AlienSprite alien2;
 
     /** Asteroid. */
     private Sprite asteroid;
+    
+    private Sprite asteroid1;
 
     /** Hintergrundbild. */
     private Image background;
@@ -28,16 +33,22 @@ public class GameBoard {
     /**
      * Erzeugt ein neues Board.
      */
+    
     public GameBoard() {
 // TODO: Einkommentieren
 //        // neues Spielfeld anlegen
-//        super(10, new Dimension(800, 600), Color.BLACK);
-//
-//        // Hintergrundbild laden
-//        background = ImageBase.loadImage("assets/background");
-//
+        super(10, new Dimension(800, 600), Color.BLACK);
+
+        // Hintergrundbild laden
+        background = ImageBase.loadImage("assets/background");
+
 
         // TODO: Alien und Asteroid anlegen und positionieren
+        this.alien1 = new AlienSprite(this, new Point(10,300));
+        this.alien2 = new AlienSprite(this, new Point(10,500));
+        this.asteroid = new Asteroid(this, new Point(100,300));
+        this.asteroid1 = new Asteroid(this, new Point(100,550));
+        
     }
 
     /**
@@ -54,6 +65,12 @@ public class GameBoard {
      */
     public void drawGame(Graphics g) {
         // TODO: Alle Objekte zeichnen
+        this.alien1.draw(g);
+        this.alien2.draw(g);
+        this.asteroid.draw(g);
+        this.asteroid1.draw(g);
+        
+        
     }
 
     /**
@@ -64,13 +81,21 @@ public class GameBoard {
      */
     public boolean updateGame() {
 
-        // TODO: Die Objekte bewegen
+        this.alien1.move();
+        this.alien2.move();
+        this.asteroid.move();
+        this.asteroid1.move();
+        
 
         // Kollision erkennen
 // TODO: Einkommentieren
-//        if (alien.intersects(asteroid) && alien.isActive()) {
-//            alien.explode();
-//        }
+        if (alien1.intersects(asteroid) && alien1.isActive()) {
+            alien1.explode();
+        }
+        
+        if (alien2.intersects(asteroid1) && alien2.isActive()) {
+            alien2.explode();
+        }
 
         return true;
     }

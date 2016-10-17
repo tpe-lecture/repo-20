@@ -1,5 +1,4 @@
-
-
+package firma.stammdaten;
 /**
  * Ein Kunde der Firma.
  */
