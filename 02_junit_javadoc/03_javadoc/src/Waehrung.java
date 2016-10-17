@@ -1,12 +1,16 @@
 /**
- * Klasse, die eine Währung repräsentiert. Jede Währung besitzt einen Namen, ein Kürzel 
- * und einen Kurs (in Bezug auf Dollar)
- * 
+ * Klasse, die eine Währung repräsentiert. Jede Währung besitzt einen Namen, ein Kürzel
+ * und einen Kurs (in Bezug auf Dollar).
+ * <p>
  * Mit Hilfe des Konstruktors können neue Währungen erzeugt und initialisiert werden.
- * 
- * <pre>
- * Waehrung euro = new Waehrung ("Euro", ""
- * 
+ * <p>
+ * <b>
+ * Waehrung euro = new Waehrung ("Euro", "€", 1.1);
+ * </b>
+ * <p>
+ * Die Klasse erlaubt es, eine Währung umzurechnen. Die Methoden hashcode und equals wurden
+ * aus "Object" überschrieben.
+ *
  * @author Thomas Smits
  *
  */
@@ -48,8 +52,8 @@ public class Waehrung {
     }
 
     /**
-     * 
-     * @param betrag Geldbetrag der umgerechnet werden soll 
+     *
+     * @param betrag Geldbetrag der umgerechnet werden soll
      * @param toWaehrung gewünschte Währung, Objekt der Klasse Währung
      * @return
      */
@@ -58,15 +62,15 @@ public class Waehrung {
     }
 
     /**
-     * 
+     *
      * @return gibt den Kurs der Währung als int zurück (in Bezug auf Dollar)
      */
     public int getKurs() {
         return kurs;
     }
-    
+
     /**
-     * 
+     *
      * @return gibt den Namen der Währung als String zurück
      */
     public String getName() {
@@ -74,7 +78,7 @@ public class Waehrung {
     }
 
     /**
-     * 
+     *
      * @return gibt das Kürzel der Währung als String zurück
      */
     public String getKuerzel() {
