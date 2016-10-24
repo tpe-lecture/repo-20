@@ -1,6 +1,7 @@
 package tpe.oo.ueberschreiben;
 
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 import de.smits_net.games.framework.board.Board;
 import de.smits_net.games.framework.image.AnimatedImage;
@@ -37,5 +38,12 @@ public class Alien extends AnimatedSprite {
         setImages(new AnimatedImage(20,
                 new StripedImage("assets/explosion_1.png", 43)));
         setInvisibleAfterFrames(70);
+ 
+      
+    }
+    
+    @Override   
+    public void mousePressed(MouseEvent e){
+        this.explode();
     }
 }

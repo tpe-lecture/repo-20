@@ -27,9 +27,7 @@ public final class ZooSimulation {
      * @param args Kommandozeilen-Argumente.
      */
     public static void main(String[] args) {
-        Futterstelle futterstelle = new Futterstelle();
-
-
+        Futterstelle futterstelle = new Futterstelle(); 
         for (ZooTier tier: tiere) {
             System.out.println(tier);
         }

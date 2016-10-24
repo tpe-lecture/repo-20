@@ -47,4 +47,9 @@ public class GameBoard extends Board {
         alien.move();
         return alien.isVisible();
     }
+
+    @Override
+    public void drawGameOver(Graphics g){
+        this.writeText(g, 40, 30, "You have failed to protect your alien!");
+    }
 }
