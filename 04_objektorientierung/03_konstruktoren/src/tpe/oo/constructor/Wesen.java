@@ -13,6 +13,10 @@ public class Wesen {
      * 
      * @param name Name der Figur.
      */
+    public Wesen(){
+        
+    }
+    
     public Wesen(String name) {
         this.name = name;
     }
