@@ -17,7 +17,9 @@ public final class ZooSimulation {
         // keine Objekte benötigt
     }
 
-    private static ZooTier[] tiere ={ new Affe("Charlie"), new Gorilla("Buck"), new Giraffe("Debbie") };
+    private static ZooTier[] tiere = {new Affe("Charlie"),
+                                      new Gorilla("Buck"),
+                                      new Giraffe("Debbie")};
 
     /**
      * Main-Methode.
