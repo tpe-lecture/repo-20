@@ -11,12 +11,22 @@ public class Nachtelf extends Wesen {
     /** Fähigkeit zum Widerstand gegen Naturmagie */
     private int naturwiderstand;
     
-    // Konstruktoren fehlen. Bitte hier einfügen.
+    /**
+     * 
+     * @param name Name des Nachtelfen.
+     * <p>
+     * Naturwiderstand wird auf Standardwert gesetzt.
+     */
     public Nachtelf(String name){
         super(name);
         this.naturwiderstand=STANDARD_NATURWIDERSTAND;
     }
     
+    /**
+     * 
+     * @param name Name des Nachtelfen.
+     * @param naturwiderstand gewünschter Naturwiderstand.
+     */
     public Nachtelf(String name, int naturwiderstand){
         super(name);
         this.naturwiderstand=naturwiderstand;
