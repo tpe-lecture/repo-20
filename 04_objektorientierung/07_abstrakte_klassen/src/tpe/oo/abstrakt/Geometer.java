@@ -24,7 +24,6 @@ public final class Geometer {
         figuren[2] = new Kreis(3.3);
         figuren[3] = new Kreis(7.2);
         figuren[4] = new Kreis(8.0);
-
         figuren[5] = new Dreieck(4.0, 3.0);
         figuren[6] = new Dreieck(2.0, 1.0);
         figuren[7] = new Dreieck(5.0, 8.0);
