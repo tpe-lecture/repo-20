@@ -15,14 +15,12 @@ public final class Batcave {
      * 
      * @param args Argumente von der Kommandozeile.
      */
-    public static void main(String[] args) {
-        Batman batman1 = new Batman();
-        System.out.println(batman1);
-        batman1.umziehen();
-        System.out.println(batman1);
+    public static void main(String[] args) {     
+        
+        System.out.println(Batman.getInstance().toString());
+        Batman.getInstance().umziehen();
+        System.out.println(Batman.getInstance().toString());
         System.out.println();
         
-        Batman batman2 = new Batman();
-        System.out.println(batman2);        
     }    
 }

@@ -7,11 +7,23 @@ public class Batman {
     
     /** Flag, das anzeigt, ob Batman seinen Batsuit an hat. */
     private boolean batsuitAngezogen;
+    /**
+     * eine einzige Instanz von Batman.
+     */
+    private static final Batman instanz = new Batman();
     
     /**
-     * Erzeugt einen neune Batman.
+     * Instanz wird zurückgegeben.
+     * @return
      */
-    public Batman() {
+    public static Batman getInstance(){
+        return instanz;
+    }
+    
+    /**
+     * keine neuen Instanzen von Batman!
+     */
+    private Batman() {
         // Frisch geschaffene Batman tragen keine Suit
         batsuitAngezogen = false;
     }
