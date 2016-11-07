@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import de.smits_net.games.framework.board.Board;
 import de.smits_net.games.framework.sprite.AnimatedSprite;
 import tpe.oo.factory.figuren.Figur;
+import tpe.oo.factory.figuren.FigurFactory;
 import tpe.oo.factory.figuren.Lady;
 import tpe.oo.factory.figuren.Ninja;
 import tpe.oo.factory.figuren.Wizard;
@@ -28,16 +29,8 @@ public class GameBoard extends Board {
         
         // Figuren erzeugen
         for (int i = 0; i < figur.length; i++) {
+            figur[i]=FigurFactory.createFigur(this);
             
-            if (i % 3 == 0) {
-                figur[i] = new Lady(this);    
-            }
-            else if (i % 3 == 1) {
-                figur[i] = new Ninja(this);    
-            }
-            else { // i % 3 == 2
-                figur[i] = new Wizard(this);
-            }
         }
     }
 
