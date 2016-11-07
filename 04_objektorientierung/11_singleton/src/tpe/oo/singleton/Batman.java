@@ -29,7 +29,7 @@ public final class Batman {
     }
 
     /**
-     * Bat man zieht sich in seiner Batcave um.
+     * Batman zieht sich in seiner Batcave um.
      */
     public void umziehen() {
         batsuitAngezogen = !batsuitAngezogen;
