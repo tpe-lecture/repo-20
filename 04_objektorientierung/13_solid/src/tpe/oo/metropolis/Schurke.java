@@ -4,6 +4,8 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
 
     protected Superkraft schwaeche;
     
+    protected boolean verurteilt;
+    
     public Schurke(String name,String mutation, int einkommen){
         this.name=name;
         this.mutation=mutation;
@@ -44,6 +46,10 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
     @Override
     public int steuer() {
         return einkommenSteuer();
+    }
+    
+    public void setVerurteilung(boolean verurteilt){
+        this.verurteilt=verurteilt;
     }
  
 }

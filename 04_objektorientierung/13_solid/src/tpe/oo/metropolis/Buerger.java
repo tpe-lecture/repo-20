@@ -2,8 +2,9 @@ package tpe.oo.metropolis;
 
 public class Buerger extends Mensch implements Einkommenssteuerpflichtig{
     
-    public Buerger(String name, int einkommen){
+    public Buerger(String name,int alter, int einkommen){
         this.name=name;
+        this.alter=alter;
         this.einkommen=einkommen;
     }
     
