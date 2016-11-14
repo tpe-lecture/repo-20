@@ -14,24 +14,32 @@ public final class Zahlenraten {
      * Liest einen String von der Tastatur.
      *
      * @return der gelesene String
-     * @throws IOException Probleme mit der Console
+     *
      */
-    private static String readNumber() throws IOException {
+    private static String readNumber()  {
         BufferedReader br = new BufferedReader(
                 new InputStreamReader(System.in));
-        String input = br.readLine();
-        return input;
+        String input = "";
+        try {
+            input = br.readLine();
+            return input;
+        }
+        catch (IOException e) {
+            System.out.println("Fehler beim Lesen der Konsole");
+            return input;
+        }
+
+
     }
 
     /**
      * Hauptmethode.
      *
      * @param args Kommandozeilenargumente
-     * @throws NumberFormatException Fehler bei der Zahlenkovertierung
      * @throws IOException I/O-Fehler
      */
     public static void main(String[] args)
-            throws NumberFormatException, IOException {
+            throws IOException {
 
         // zu ratende Zahl bestimmen
         int zahl = new Random().nextInt(100) + 1;
@@ -40,18 +48,25 @@ public final class Zahlenraten {
 
         while (true) {
             System.out.print("Bitte geben Sie eine Zahl ein: ");
-            int geraten  = Integer.parseInt(readNumber());
-            versuche++;
+            try {
+                int geraten  = Integer.parseInt(readNumber());
+                versuche++;
 
-            if (geraten < zahl) {
-                System.out.println("Zu niedrig");
+
+                if (geraten < zahl) {
+                    System.out.println("Zu niedrig");
+                }
+                else if (geraten > zahl) {
+                    System.out.println("Zu hoch.");
+                }
+                else {
+                    System.out.printf("Richtig in %d Versuchen", versuche);
+                    break;
+                }
             }
-            else if (geraten > zahl) {
-                System.out.println("Zu hoch.");
-            }
-            else {
-                System.out.printf("Richtig in %d Versuchen", versuche);
-                break;
+            catch (NumberFormatException e) {
+                System.out.println("Sie haben eine falsche Angabe gemacht");
+
             }
         }
     }
