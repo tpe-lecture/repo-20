@@ -22,12 +22,12 @@ public final class Zahlenraten {
         String input = "";
         try {
             input = br.readLine();
-            return input;
         }
         catch (IOException e) {
             System.out.println("Fehler beim Lesen der Konsole");
-            return input;
         }
+
+        return input;
 
 
     }
