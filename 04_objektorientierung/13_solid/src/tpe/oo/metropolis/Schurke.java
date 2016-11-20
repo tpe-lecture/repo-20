@@ -2,28 +2,39 @@ package tpe.oo.metropolis;
 
 public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
 
-    protected Superkraft schwaeche;
+    private Superkraft schwaeche;
     
-    protected boolean verurteilt;
-    
-    public Schurke(String name,String mutation, int einkommen){
+    private boolean verurteilt;
+    /**
+     * erstellt eine Instanz von <b>Schurke</b>. Ein Schurke kann mit einem Helden kämpfen und besitzt eine Schwäche.
+     * @param name Name des Schurken (aus der Klasse Einwohner)
+     * @param mutation Mutation des Schurken (aus der Klasse Mutant)
+     * @param einkommen Einkommen des Schurken (aus der Klasse Einwohner)
+     */
+    public Schurke(String name, String mutation, int einkommen) {
         this.name=name;
         this.mutation=mutation;
         this.einkommen=einkommen;
     }
-    
+    /**
+     * 
+     * @param superheld Held, mit welchem der Schurke kämpfen soll.
+     * @return true, wenn der Schurke gewinnt, false, wenn der Held gewinnt. 
+     */
     public boolean kaempfe(Superheld superheld){
         
-        for(Superkraft s : superheld.superkraefte){
-            if(s.equals(schwaeche)){
-                return true;
+        for(int i=0; i<superheld.superkraefte.size(); i++) {
+            if(superheld.superkraefte.get(i).equals(schwaeche)) {
+                return false;
             }
-            
-        } return false;
+        }
+        return true;
     }
-    
+    /**
+     * Implementiert die Methode einkommenSteuer() aus dem Interface Einkommenssteuerpflichtig
+     */
     @Override
-    public int einkommenSteuer(){
+    public int einkommenSteuer() {
         int versteuertesEinkommen=0;
         if (this.einkommen<=20000){
             versteuertesEinkommen=(int)(this.einkommen*STEUERSATZ_1);
@@ -42,14 +53,44 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
             return versteuertesEinkommen;
         }else return -1;
     }
-
+    /**
+     * berechnet die Steuer des Schurken
+     * @return den Wert der Steuer als int
+     */
     @Override
     public int steuer() {
         return einkommenSteuer();
     }
-    
+    /**
+     * setzt das Feld verurteilt auf den gewünschten Wert 
+     * @param verurteilt gewünschter Status der Verurteilung
+     */
     public void setVerurteilung(boolean verurteilt){
         this.verurteilt=verurteilt;
     }
+    /**
+     * setzt das Feld schwaeche auf den gewünschten Wert
+     * @param schwaeche gewünschte Schwäche
+     */
+    public void setSchwaeche(String schwaeche) { 
+        this.schwaeche = new Superkraft(schwaeche);
+    }
+    /**
+     * 
+     * @return das Feld schwaeche
+     */   
+    public Superkraft getSchwaeche(){
+        return this.schwaeche;
+    }
+    /**
+     * implementiert die Methode getname aus dem Interface Steuerpflichtig 
+     * @return das Feld name(aus der Klasse Einwohner)
+     */
+    @Override
+    public String getname() {
+        return name;
+    }
+    
+    
  
 }

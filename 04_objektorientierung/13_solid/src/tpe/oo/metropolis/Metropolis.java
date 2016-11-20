@@ -6,10 +6,14 @@ public class Metropolis {
 
     private static final Metropolis METROPOLIS = new Metropolis();
 
-    private Einwohner[] einwohner = new Einwohner[3];
+//    private Einwohner[] einwohner;
+    
+    private LinkedList<Einwohner> einwohner = new LinkedList<Einwohner>();
 
-    private Unternehmen[] unternehmen = new Unternehmen[3];
-
+    private LinkedList<Unternehmen> unternehmen = new LinkedList<Unternehmen>();
+    
+    private LinkedList<Syndikat> syndikate = new LinkedList<Syndikat>();
+    
     /**
      * keine neuen Instanzen von Metropolis
      */
@@ -22,28 +26,126 @@ public class Metropolis {
      * gibt einzige Instanz von Metropolis zurück
      * @return METROPOLIS
      */
-    public static Metropolis getMetropolis(){
+    public static Metropolis getMetropolis() {
         return METROPOLIS;
     }
 
-    public void addEinwohner(Einwohner e){
-        for(int i=0; i<=einwohner.length;i++){
-            if(einwohner[i]!=null){
-                einwohner[i]=e;
-                return;
-            }
-        }
+    /**
+     * fügt der Liste einwohner einen Einwohner hinzu
+     * @param e Einwohner, der hinzugefügt werden soll
+     */
+    public void addEinwohner(Einwohner e) {
+        einwohner.add(e);
+    }
+    
+    /**
+     * fügt der Liste unternehmen ein Unternehmen hinzu
+     * @param e Unternehmen, welches hinzugefügt werden soll
+     */
+    public void addUnternehmen(Unternehmen e) {
+        unternehmen.add(e);
+    }
+    /**
+     * fügt der Liste syndikate ein Syndikat hinzu
+     * @param e Syndikat, welches hinzugefügt werden soll
+     */
+    public void addSyndikat(Syndikat e) {
+        syndikate.add(e);
     }
 
-    public void addUnternehmen(Unternehmen e){
-        for(int i=0; i<=unternehmen.length;i++){
-            if(unternehmen[i]!=null){
-                unternehmen[i]=e;
-                return;
-            }
+
+    /**
+     * gibt den Namen aller Einwohner der Liste einwohner nacheinander aus
+     */
+    public void printEinwohner() {
+        for(int i=0; i<einwohner.size(); i++) {
+            System.out.println(i+1+". "+einwohner.get(i).name);
+            System.out.println();
         }
     }
+    
+    /**
+     * gibt den Namen aller Unternehmen der Liste unternehmen nacheinander aus
+     */
+    public void printUnternehmen() {
+        for(int i=0; i<unternehmen.size(); i++) {
+            System.out.println(i+1+". "+unternehmen.get(i).name);
+            System.out.println();
+        }
+    }
+    
+    /**
+     *gibt den Namen aller Syndikate der Liste syndikate nacheinander aus 
+     */
+    public void printSyndikate() {
+        for(int i=0; i<syndikate.size(); i++) {
+            System.out.println(i+1+". "+syndikate.get(i).name);
+        }
+    }
+    
+    /**
+     * sucht den Namen des gewünschten Einwohners in der Liste einwohner und gibt diesen dann aus
+     * @param name Name des Einwohners
+     * @return gesuchter Einwohner, null wenn Einwohner nicht existiert
+     */
+    public Einwohner getEinwohner(String name) {
+        for(int i=0; i<einwohner.size(); i++) {
+            if(einwohner.get(i).name.equals(name)) {
+                return einwohner.get(i);
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * entfernt den gewünschten Einwohner aus der Liste einwohner
+     * @param e Einwohner, der entfernt werden soll
+     */
+    public void deleteEinwohner(Einwohner e) {
+        einwohner.remove(e);
+    }
+    
+    /**
+     * sucht den Namen des gewünschten Syndikats in der Liste syndikate und gibt diesen dann aus
+     * @param name Name des Syndikats
+     * @return gesuchtes Syndikat, null wenn Syndikat nicht existiert
+     */
+    public Syndikat getSyndikat(String name) {
+        for(int i=0; i<syndikate.size(); i++) {
+            if(syndikate.get(i).name.equals(name)) {
+                return syndikate.get(i);
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * sucht den Namen des gewünschten Unternehmens in der Liste unternehmen und gibt diesen dann aus
+     * @param name Name des Unternehmens
+     * @return gesuchtes Unternehmen, null wenn Unternehmen nicht existiert
+     */
+    public Unternehmen getUnternehmen(String name) {
+        for(int i=0; i<unternehmen.size(); i++) {
+            if(unternehmen.get(i).name.equals(name)) {
+                return unternehmen.get(i);
+            }
+        }
+        return null;
+    }
 
-
+    /**
+     * 
+     * @return Größe der Liste einwohner
+     */
+    public int einwohnerLength() {
+        return einwohner.size();
+    }
+    /**
+     * 
+     * @return Größe der Liste unternehmen
+     */
+    public int unternehmenLength() {
+        return unternehmen.size();
+    }
 
 }
