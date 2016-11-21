@@ -323,6 +323,24 @@ public class Main {
                         continue;
                     }
 
+            case 10: System.out.println("Geben Sie den gewünschten Schurken ein");
+                     String schurkenName=reader.readLine();
+                     Schurke schurke=(Schurke)Metropolis.getMetropolis().getEinwohner(schurkenName);
+                     if(schurke!=null) {
+                         System.out.println("Geben Sie den Namen des Helden ein, mit dem "+schurkenName+" kämpfen soll");
+                         String heldenName=reader.readLine();
+                         Superheld superHeld=(Superheld)Metropolis.getMetropolis().getEinwohner(heldenName);
+                         if(superHeld!=null) {
+                             boolean result=schurke.kaempfe(superHeld);
+                             if(result) {
+                                 System.out.println("Der Schurke "+schurkenName+" hat gewonnen!");
+                                 Metropolis.getMetropolis().deleteEinwohner(superHeld);
+                                 System.out.println("Der Superheld " +heldenName+" wurde aus der Liste der Einwohner entfernt");
+                             }
+                         }
+
+                     }
+
             }
         }
     }
