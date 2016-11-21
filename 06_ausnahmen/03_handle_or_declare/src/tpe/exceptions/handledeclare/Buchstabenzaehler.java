@@ -17,13 +17,10 @@ public class Buchstabenzaehler {
      * @param args Kommandozeilenargumente
      */
     public static void main(String[] args) {
-        try {
-            Buchstabenzaehler bs = new Buchstabenzaehler();
-            bs.run();
-        }
-        catch (StatistikException e) {
-            System.out.println("Fehler bei der Berechnung der Buchstabennhäufigkeit");
-        }
+
+        Buchstabenzaehler bs = new Buchstabenzaehler();
+        bs.run();
+
 
     }
 
@@ -33,7 +30,7 @@ public class Buchstabenzaehler {
      * @throws StatistikException Fehler bei der Berechnung der
      *      Buchstabenhäufigkeit.
      */
-    private void run() throws StatistikException {
+    private void run() {
         System.out.print("Bitte geben Sie den Dateinamen an: ");
         Scanner scanner = new Scanner(System.in);
         String dateiname = scanner.nextLine();
@@ -44,9 +41,16 @@ public class Buchstabenzaehler {
             printStatistik(statistik);
             scanner.close();
         }
+        catch (StatistikException e) {
+            System.out.println("Fehler bei Berechnung der Buchstabennhäufigkeit");
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Datei nicht gefunden");
+        }
         catch (IOException e) {
             System.out.println("Fehler beim Lesen der Datei");
         }
+
     }
 
     /**
