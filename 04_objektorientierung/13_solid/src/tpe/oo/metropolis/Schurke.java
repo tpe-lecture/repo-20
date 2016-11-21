@@ -3,7 +3,7 @@ package tpe.oo.metropolis;
 public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
 
     private Superkraft schwaeche;
-    
+
     private boolean verurteilt;
     /**
      * erstellt eine Instanz von <b>Schurke</b>. Ein Schurke kann mit einem Helden kämpfen und besitzt eine Schwäche.
@@ -17,12 +17,12 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
         this.einkommen=einkommen;
     }
     /**
-     * 
+     *
      * @param superheld Held, mit welchem der Schurke kämpfen soll.
-     * @return true, wenn der Schurke gewinnt, false, wenn der Held gewinnt. 
+     * @return true, wenn der Schurke gewinnt, false, wenn der Held gewinnt.
      */
     public boolean kaempfe(Superheld superheld){
-        
+
         for(int i=0; i<superheld.superkraefte.size(); i++) {
             if(superheld.superkraefte.get(i).equals(schwaeche)) {
                 return false;
@@ -39,15 +39,15 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
         if (this.einkommen<=20000){
             versteuertesEinkommen=(int)(this.einkommen*STEUERSATZ_1);
             return versteuertesEinkommen;
-        }else if(this.einkommen<=60000){
+        } else if(this.einkommen<=60000) {
             int rest=this.einkommen-20000;
             versteuertesEinkommen=(int)(20000*STEUERSATZ_1+rest*STEUERSATZ_2);
             return versteuertesEinkommen;
-        }else if(this.einkommen<=120000){
+        }else if(this.einkommen<=120000) {
             int rest=this.einkommen-60000;
             versteuertesEinkommen=(int)(20000*STEUERSATZ_1+40000*STEUERSATZ_2+rest*STEUERSATZ_3);
             return versteuertesEinkommen;
-        }else if(this.einkommen>120000){
+        }else if(this.einkommen>120000) {
             int rest=this.einkommen-120000;
             versteuertesEinkommen=(int)(20000*STEUERSATZ_1+40000*STEUERSATZ_2+60000*STEUERSATZ_3+rest*STEUERSATZ_4);
             return versteuertesEinkommen;
@@ -62,7 +62,7 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
         return einkommenSteuer();
     }
     /**
-     * setzt das Feld verurteilt auf den gewünschten Wert 
+     * setzt das Feld verurteilt auf den gewünschten Wert
      * @param verurteilt gewünschter Status der Verurteilung
      */
     public void setVerurteilung(boolean verurteilt){
@@ -72,25 +72,25 @@ public class Schurke extends Mutant implements Einkommenssteuerpflichtig {
      * setzt das Feld schwaeche auf den gewünschten Wert
      * @param schwaeche gewünschte Schwäche
      */
-    public void setSchwaeche(String schwaeche) { 
+    public void setSchwaeche(String schwaeche) {
         this.schwaeche = new Superkraft(schwaeche);
     }
     /**
-     * 
+     *
      * @return das Feld schwaeche
-     */   
+     */
     public Superkraft getSchwaeche(){
         return this.schwaeche;
     }
     /**
-     * implementiert die Methode getname aus dem Interface Steuerpflichtig 
+     * implementiert die Methode getname aus dem Interface Steuerpflichtig
      * @return das Feld name(aus der Klasse Einwohner)
      */
     @Override
     public String getname() {
         return name;
     }
-    
-    
- 
+
+
+
 }

@@ -20,7 +20,7 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 
-        while(true){
+        while(true) {
             System.out.println("1. Erstelle Einwohner");
             System.out.println("2. Berechne Steuern");
             System.out.println("3. Erstelle Syndikat");
@@ -336,8 +336,23 @@ public class Main {
                                  System.out.println("Der Schurke "+schurkenName+" hat gewonnen!");
                                  Metropolis.getMetropolis().deleteEinwohner(superHeld);
                                  System.out.println("Der Superheld " +heldenName+" wurde aus der Liste der Einwohner entfernt");
+                                 System.out.println();
+                                 continue;
+                             }
+                             else {
+                                 System.out.println("Der Superheld "+heldenName+" hat gewonnen!");
+                                 Metropolis.getMetropolis().deleteEinwohner(schurke);
+                                 Finanzamt.getFinanzamt().deleteSteuerpflichtigen(schurke);
+                                 System.out.println("Der Schurke "+schurkenName+" wurde aus der Liste der Einwohner und der Steuerpflichtigen entfernt");
+                                 continue;
+
                              }
                          }
+                         else {
+                             System.out.println("Dieser Schurke existiert nicht");
+                             continue;
+                         }
+
 
                      }
 
