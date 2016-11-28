@@ -7,13 +7,13 @@ public class Metropolis {
     private static final Metropolis METROPOLIS = new Metropolis();
 
 //    private Einwohner[] einwohner;
-    
+
     private LinkedList<Einwohner> einwohner = new LinkedList<Einwohner>();
 
     private LinkedList<Unternehmen> unternehmen = new LinkedList<Unternehmen>();
-    
+
     private LinkedList<Syndikat> syndikate = new LinkedList<Syndikat>();
-    
+
     /**
      * keine neuen Instanzen von Metropolis
      */
@@ -37,7 +37,7 @@ public class Metropolis {
     public void addEinwohner(Einwohner e) {
         einwohner.add(e);
     }
-    
+
     /**
      * fügt der Liste unternehmen ein Unternehmen hinzu
      * @param e Unternehmen, welches hinzugefügt werden soll
@@ -63,7 +63,7 @@ public class Metropolis {
             System.out.println();
         }
     }
-    
+
     /**
      * gibt den Namen aller Unternehmen der Liste unternehmen nacheinander aus
      */
@@ -73,16 +73,16 @@ public class Metropolis {
             System.out.println();
         }
     }
-    
+
     /**
-     *gibt den Namen aller Syndikate der Liste syndikate nacheinander aus 
+     *gibt den Namen aller Syndikate der Liste syndikate nacheinander aus
      */
     public void printSyndikate() {
         for(int i=0; i<syndikate.size(); i++) {
             System.out.println(i+1+". "+syndikate.get(i).name);
         }
     }
-    
+
     /**
      * sucht den Namen des gewünschten Einwohners in der Liste einwohner und gibt diesen dann aus
      * @param name Name des Einwohners
@@ -96,7 +96,7 @@ public class Metropolis {
         }
         return null;
     }
-    
+
     /**
      * entfernt den gewünschten Einwohner aus der Liste einwohner
      * @param e Einwohner, der entfernt werden soll
@@ -104,7 +104,7 @@ public class Metropolis {
     public void deleteEinwohner(Einwohner e) {
         einwohner.remove(e);
     }
-    
+
     /**
      * sucht den Namen des gewünschten Syndikats in der Liste syndikate und gibt diesen dann aus
      * @param name Name des Syndikats
@@ -118,7 +118,7 @@ public class Metropolis {
         }
         return null;
     }
-    
+
     /**
      * sucht den Namen des gewünschten Unternehmens in der Liste unternehmen und gibt diesen dann aus
      * @param name Name des Unternehmens
@@ -132,16 +132,27 @@ public class Metropolis {
         }
         return null;
     }
+    /**
+     * prüft, ob es einen Einwohner mit dem eingegebenen Namen gibt
+     * @param name Name des Einwohners
+     * @return true, wenn Einwohner gefunden wurde, false, wenn nicht
+     */
+    public boolean contains(String name) {
+        if(Metropolis.getMetropolis().getEinwohner(name)!=null) {
+            return true;
+        }
+        return false;
+    }
 
     /**
-     * 
+     *
      * @return Größe der Liste einwohner
      */
     public int einwohnerLength() {
         return einwohner.size();
     }
     /**
-     * 
+     *
      * @return Größe der Liste unternehmen
      */
     public int unternehmenLength() {

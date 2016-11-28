@@ -133,7 +133,7 @@ public class Main {
                     Syndikat syndikat=new Syndikat(name);
                     Metropolis.getMetropolis().addSyndikat(syndikat);
                     Finanzamt.getFinanzamt().addSteuerpflichtigen(syndikat);
-                    System.out.println(name+" wurde erfolgreich erstellt");
+                    System.out.println("Das Syndikat "+name+" wurde erfolgreich erstellt");
                     System.out.println();
                     continue;
 
@@ -244,12 +244,19 @@ public class Main {
                     if(syndi!=null) {
                         System.out.println("Geben Sie den Namen des Schurken ein, den sie hinzufügen möchten");
                         String schurkenName=reader.readLine();
-                        syndi.addSchurke((Schurke)Metropolis.getMetropolis().getEinwohner(schurkenName));
-                        System.out.println("Sie haben "+schurkenName+" erfolgreich dem Syndikat "+syndiName+" hinzugefügt");
-                        continue;
+                        if(Metropolis.getMetropolis().contains(schurkenName)) {
+                            syndi.addSchurke((Schurke)Metropolis.getMetropolis().getEinwohner(schurkenName));
+                            System.out.println("Sie haben "+schurkenName+" erfolgreich dem Syndikat "+syndiName+" hinzugefügt");
+                            System.out.println();
+                            continue;
+                        }
+                        else {
+                            System.out.println("Dieser Schurke existiert nicht");
+                        }
                     }
                     else {
                         System.out.println("das von ihnen eingegebene Syndikat existiert nicht");
+                        System.out.println();
                         continue;
                     }
 
@@ -298,6 +305,7 @@ public class Main {
                                 System.out.println("Der Superheld "+heldName+" hat gewonnen!");
                                 Metropolis.getMetropolis().deleteEinwohner(schurke);
                                 Finanzamt.getFinanzamt().deleteSteuerpflichtigen(schurke);
+                                //Schurke muss aus Syndikat entfernt werden
                                 System.out.println();
                                 System.out.println("Der Schurke "+schurkenName+" wurde aus der Liste der Einwohner und der Steuerpflichtigen entfernt");
                                 System.out.println();
