@@ -31,6 +31,7 @@ public class Main {
             System.out.println("8. Verurteile");
             System.out.println("9. Kämpfe mit Schurke");
             System.out.println("10. Kämpfe mit Superheld");
+            System.out.println("11. Programm beenden");
             System.out.println();
             System.out.println("Geben Sie die Ziffer der gewünschten Aktion ein: ");
 
@@ -363,6 +364,7 @@ public class Main {
 
 
                      }
+            case 11: return;
 
             }
         }
