@@ -9,7 +9,7 @@ public class CrypterImpl implements Crypter {
   /**
    * Prüft jedes einzelne Zeichen auf Gültigkeit, ist das Zeichen eine Ziffer
    * oder ein Buchstabe, wird es entsprechend kodiert. Wenn nicht wird es
-   * ignoriert.
+   * nicht übernommen.
    *  
    * @param input String, der verschlüsselt werden soll.
    * @return den entsprechend verschlüsselten String
@@ -18,35 +18,41 @@ public class CrypterImpl implements Crypter {
   public String encrypt(String input) {
 
     input = input.toLowerCase();
-    char[] signs = input.toCharArray();
+    String correctSigns = "";
+    //Schleife durchläuft alle Zeichen, Sonderzeichen werden nicht übernommen
+    for (int i = 0; i < input.length(); i++) {
+      if (!(input.charAt(i) <= 'z' && input.charAt(i) >= 'a' || input.charAt(i) <= '9' && input.charAt(i) >= '0' || input.charAt(i) == ' ')) {
+        continue;
+      } else {
+        correctSigns += input.charAt(i);
+      }
+    }
+    
+    char[] signs = correctSigns.toCharArray();
 
     //Schleife durchsucht jedes einzelne Zeichen und kodiert es entsprechend
     for (int i = 0; i < signs.length; i++) {
       //prüft, ob ungültiges Zeichen enthalten ist, wenn ja, wird es ignoriert
-      if (!(signs[i] <= 'z' && signs[i] >= 'a' || signs[i] <= '9' && signs[i] >= '0')) {
-        continue;
-      } else {
-        if (signs[i] == 'e') {
-          signs[i] = '3';
-        } else if (signs[i] == '3') {
-          signs[i] = 'e';
-        } else if (signs[i] == 'l') {
-          signs[i] = '1';
-        } else if (signs[i] == '1') {
-          signs[i] = 'l';
-        } else if (signs[i] == 'o') {
-          signs[i] = '0';
-        } else if (signs[i] == '0') {
-          signs[i] = 'o';
-        } else if (signs[i] == 'a') {
-          signs[i] = '4';
-        } else if (signs[i] == '4') {
-          signs[i] = 'a';
-        } else if (signs[i] == 't') {
-          signs[i] = '7';
-        } else if (signs[i] == '7') {
-          signs[i] = 't';
-        }
+      if (signs[i] == 'e') {
+        signs[i] = '3';
+      } else if (signs[i] == '3') {
+        signs[i] = 'e';
+      } else if (signs[i] == 'l') {
+        signs[i] = '1';
+      } else if (signs[i] == '1') {
+        signs[i] = 'l';
+      } else if (signs[i] == 'o') {
+        signs[i] = '0';
+      } else if (signs[i] == '0') {
+        signs[i] = 'o';
+      } else if (signs[i] == 'a') {
+        signs[i] = '4';
+      } else if (signs[i] == '4') {
+        signs[i] = 'a';
+      } else if (signs[i] == 't') {
+        signs[i] = '7';
+      } else if (signs[i] == '7') {
+        signs[i] = 't';
       }      
     }
     return new String(signs);
