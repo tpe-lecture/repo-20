@@ -3,7 +3,9 @@ package tpe.collections.list;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Klassen, um die in einem Text vorkommenen Wörter zu sammeln.
@@ -18,9 +20,9 @@ public class WordCollector {
      * @return die Liste der vorhandenen Wort
      * @throws IOException Fehler beim Dateizugriff.
      */
-    public static String[] listWords(String filename) throws IOException {
-        String[] allWords = readFileAndSplitIntoWords(filename);
-        String[] result = removeDuplicates(allWords);
+    public static List<String> listWords(String filename) throws IOException {
+        ArrayList<String> allWords = readFileAndSplitIntoWords(filename);
+        ArrayList<String> result = removeDuplicates(allWords);
 
         return result;
     }
@@ -32,7 +34,7 @@ public class WordCollector {
      * @return die Liste der vorhandenen Wort
      * @throws IOException Fehler beim Dateizugriff.
      */
-    private static String[] readFileAndSplitIntoWords(String filename)
+    private static List<String> readFileAndSplitIntoWords(String filename)
             throws IOException {
 
         // Datei zum Lesen öffnen
@@ -50,29 +52,32 @@ public class WordCollector {
             line = line.replaceAll("[\",.:'\\-\\!?]", "");
 
             String[] words = line.toLowerCase().split("[,. ]");
+            ArrayList<String> result = new ArrayList<>();
 
             // Worte in den Puffer übertragen
             for (String word : words) {
 
-                if (pos >= wordBuffer.length) {
-                    // Puffer ist voll, vergrößern
-                    String[] newBuffer = new String[wordBuffer.length * 2];
-                    System.arraycopy(wordBuffer, 0, newBuffer,
-                            0, wordBuffer.length);
-                    wordBuffer = newBuffer;
-                }
-
-                wordBuffer[pos++] = word;
-            }
+//                if (pos >= wordBuffer.length) {
+//                    // Puffer ist voll, vergrößern
+//                    String[] newBuffer = new String[wordBuffer.length * 2];
+//                    System.arraycopy(wordBuffer, 0, newBuffer,
+//                            0, wordBuffer.length);
+//                    wordBuffer = newBuffer;
+//                }
+//
+//                wordBuffer[pos++] = word;
+//            }
+                result.add(word);
         }
 
         reader.close();
 
         // Ergebnis-Array mit der richtigen Größe anlegen
-        String[] result = new String[pos];
-        System.arraycopy(wordBuffer, 0, result, 0, pos);
-
+//        String[] result = new String[pos];
+//        System.arraycopy(wordBuffer, 0, result, 0, pos);
+//
         return result;
+
     }
 
     /**
@@ -81,55 +86,68 @@ public class WordCollector {
      * @param input Eingabe Array
      * @return sortiertes und bereinigtes Array
      */
-    private static String[] removeDuplicates(String[] input) {
+    private static ArrayList<String> removeDuplicates(String[] input) {
 
         // Eingabe Array clonen, da es verändert wird (Seiteneffekt)
         String[] strings = input.clone();
+        ArrayList<String> bla = new ArrayList<>();
+
+
 
         // Array sortieren
         Arrays.sort(strings);
 
-        // Über die Einträge laufen
-        for (int i = 0; i < strings.length; i++) {
-            String word = strings[i];
-
-            if (word == null) {
-                // Bereits entfernter Eintrag
-                continue;
-            }
-
-            // Über die Einträge laufen
-            for (int k = i + 1; k < strings.length; k++) {
-                String otherWord = strings[k];
-
-                if (otherWord == null) {
-                    // Bereits entfernter Eintrag
-                    continue;
-                }
-                else if (otherWord.compareTo(word) > 0) {
-                    // Sind schon hinter der möglichen Position
-                    break;
-                }
-                else if (otherWord.equals(word)) {
-                    // Duplikat, ausnullen
-                    strings[k] = null;
-                }
-            }
+        for(String s : strings) {
+            bla.add(s);
         }
 
-        // Ausgenullte Einträge entfernen
-        int pos = 0;
-        String[] temp = new String[strings.length];
+//        // Über die Einträge laufen
+//        for (int i = 0; i < strings.length; i++) {
+//            String word = strings[i];
+//
+//            if (word == null) {
+//                // Bereits entfernter Eintrag
+//                continue;
+//            }
+//
+//            // Über die Einträge laufen
+//            for (int k = i + 1; k < strings.length; k++) {
+//                String otherWord = strings[k];
+//
+//                if (otherWord == null) {
+//                    // Bereits entfernter Eintrag
+//                    continue;
+//                }
+//                else if (otherWord.compareTo(word) > 0) {
+//                    // Sind schon hinter der möglichen Position
+//                    break;
+//                }
+//                else if (otherWord.equals(word)) {
+//                    // Duplikat, ausnullen
+//                    strings[k] = null;
+//                }
+//            }
+//        }
+//
+//        // Ausgenullte Einträge entfernen
+//        int pos = 0;
+//        String[] temp = new String[strings.length];
+//
+//        for (int i = 0; i < strings.length; i++) {
+//            if (strings[i] != null) {
+//                temp[pos++] = strings[i];
+//            }
+//        }
+//
+//        // Ergebnis auf die richtige Länge bringen
+//        String[] result = new String[pos];
+//        System.arraycopy(temp, 0, result, 0, pos);
 
-        for (int i = 0; i < strings.length; i++) {
-            if (strings[i] != null) {
-                temp[pos++] = strings[i];
+        for(String s : result) {
+            if(result.indexOf(s) == result.lastIndexOf(s)) {
+                result.remove(result.indexOf(s));
             }
         }
-
-        // Ergebnis auf die richtige Länge bringen
-        String[] result = new String[pos];
-        System.arraycopy(temp, 0, result, 0, pos);
 
         return result;
     }
