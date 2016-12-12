@@ -23,9 +23,16 @@ public class GameBoard extends Board {
          */
         public void run() {
 
-            // TODO: Threads vereinigen
+            for(Thread t : threads) {
+                try {
+                    t.join();
+                } catch (InterruptedException e) {
+                }
+            }
 
-            // TODO: Ufos sprengen, wenn alle Threads zu Ende gekommen sind
+            for(Ufo u : ufos) {
+                u.explode();
+            }
         }
     }
 
