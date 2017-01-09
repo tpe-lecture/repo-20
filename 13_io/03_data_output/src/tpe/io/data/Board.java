@@ -66,14 +66,23 @@ public class Board {
      * @throws IOException IO-Probleme
      */
     public void writeToFile(String file) throws IOException {
-        // TODO: Daten mit DataOutputStream persistieren
+        DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
+        out.writeUTF("Schachbrett");
+        for(int i = 0; i < brett.length; i++) {
+            for(int j = 0; j < brett[i].length; j++) {
+                if(brett[i][j]!=null) {
+                    out.writeByte(i);
+                    out.writeByte(j);
+                    out.writeInt(brett[i][j].ordinal());
+                }
+            }
+        }
 
-        // TODO: String "Schachbrett" speichern, um das Datenformat zu definieren
+        out.writeByte(0xff);
+        out.writeByte(0xff);
+        out.writeInt(-1);
+        out.close();
 
-        // TODO: x- und y-Koordinate des Steins und seine Farbe (als Integer)
-        //       speichern
-
-        // TODO: Dateiende mit 0xff 0xff -1 kennzeichnen
     }
 
     /**
@@ -84,14 +93,25 @@ public class Board {
      * @throws IOException IO-Probleme
      */
     public static Board loadFromFile(String file) throws IOException {
-        // TODO: Daten aus Datei lesen
+        DataInputStream in = new DataInputStream(new FileInputStream(file));
+        Board b = new Board();
+        if(!(in.readUTF().equals("Schachbrett"))) {
+            throw new IOException();
+        }
 
-        // TODO: Zuerst überprüfen, ob Datei mit "Schachbrett" anfängt,
-        //       wenn nein, Ausnahme werfen
+        int i;
 
-        // TODO: Positionen und Farbe der Figuren einlesen
+        while((i=in.read())!=-1) {
+            if((byte)i==(byte)0xff) {
+                break;
+            }
 
-        return null;
+            int j = in.read();
+            int ordinal = in.readInt();
+
+            b.brett[i][j] = Color.values()[ordinal];
+        }
+        return b;
     }
 
     /**
